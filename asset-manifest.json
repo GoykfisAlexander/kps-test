@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/kps-test/static/css/main.8b83e066.css",
-    "main.js": "/kps-test/static/js/main.463e9f81.js",
+    "main.js": "/kps-test/static/js/main.e8a3c850.js",
     "index.html": "/kps-test/index.html",
     "main.8b83e066.css.map": "/kps-test/static/css/main.8b83e066.css.map",
-    "main.463e9f81.js.map": "/kps-test/static/js/main.463e9f81.js.map"
+    "main.e8a3c850.js.map": "/kps-test/static/js/main.e8a3c850.js.map"
   },
   "entrypoints": [
     "static/css/main.8b83e066.css",
-    "static/js/main.463e9f81.js"
+    "static/js/main.e8a3c850.js"
   ]
 }
