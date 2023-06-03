@@ -1,56 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-
+import { useEffect, useState } from "react";
+import "./App.css";
+let previousNumber = 0;
 function App() {
+  const [field, setField] = useState([...Array(25)].fill(null));
+  // eslint-disable-next-line
+  const [quantityBoxes, setQuantityBoxes] = useState(15);
+
+  useEffect(() => {
+    if (field.filter((e) => e !== null).length) {
+      return;
+    }
+    const newField = [...field];
+    let count = 1;
+
+    while (count !== quantityBoxes) {
+      const randomIndex = Math.floor(Math.random() * 25);
+      if (!newField[randomIndex]) {
+        newField[randomIndex] = count;
+        count++;
+        setField([...newField]);
+      }
+    }
+    // eslint-disable-next-line
+  }, []);
+  function handleClick(i: number, boxNumber: number): void {
+    if (previousNumber + 1 === boxNumber) {
+      previousNumber = boxNumber;
+      const newField = [...field];
+      newField[i] = null;
+      setField(newField);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="Field">
+      {field.map((boxNumber, i) => (
+        <div
+          key={i}
+          className={boxNumber ? "box" : "null"}
+          onClick={() => handleClick(i, boxNumber)}
+        >
+          {boxNumber}
+        </div>
+      ))}
     </div>
   );
 }
